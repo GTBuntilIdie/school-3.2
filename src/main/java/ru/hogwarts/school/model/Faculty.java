@@ -1,11 +1,10 @@
 package ru.hogwarts.school.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-
-
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Objects;
+
 @Data
 public class Faculty {
     @Id
