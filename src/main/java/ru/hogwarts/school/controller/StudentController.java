@@ -10,17 +10,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("student")
+@RequestMapping("/student")
 public class StudentController {
     private final StudentService service;
     public StudentController(StudentService service) {
         this.service = service;
     }
-    @PostMapping
+    @PostMapping("/create")
     public Student createStudent(@RequestBody Student student) {
         return service.createStudent(student);
     }
-    @PutMapping
+    @PutMapping("/edit")
     public ResponseEntity<Student> editStudent(@RequestBody Student student) {
         Student editStudent = service.editStudent(student);
         if (editStudent == null) {
@@ -36,11 +36,11 @@ public class StudentController {
         }
         return ResponseEntity.ok(findStudent);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("delete/{id}")
     public void deleteStudent(@PathVariable long id) {
         service.deleteStudent(id);
     }
-    @GetMapping("/age/{age}")
+    @GetMapping("sorted/{age}")
     public Collection<Student> studentsTheSameAge(@PathVariable int age) {
         return service.allStudents().stream()
                 .filter(faculty -> faculty.getAge() == age)

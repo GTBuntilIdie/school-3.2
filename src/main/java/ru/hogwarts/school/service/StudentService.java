@@ -5,8 +5,6 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 
 @Service
 public class StudentService {
@@ -21,7 +19,10 @@ public class StudentService {
         return studentRepository.save(student);
     }
     public Student findStudent(long id) {
-        return studentRepository.findById(id).get();
+        if (studentRepository.findById(id).isPresent()) {
+            return studentRepository.findById(id).get();
+        }
+        return null;
     }
     public Student editStudent(Student student) {
         return studentRepository.save(student);

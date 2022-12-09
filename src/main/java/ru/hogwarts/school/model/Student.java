@@ -2,10 +2,12 @@ package ru.hogwarts.school.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 @Data
+@Entity
 public class Student {
     @Id
     @GeneratedValue
@@ -17,6 +19,10 @@ public class Student {
         this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    public Student() {
+
     }
 
     public Long getId() {
