@@ -39,7 +39,7 @@ public class FacultyController {
     public void deleteFaculty(@PathVariable long id) {
         facultyService.deleteFaculty(id);
     }
-    @GetMapping("/color/{color}")
+    @GetMapping("sorted/{color}")
     public Collection<Faculty> facultyStudentsByColor(@PathVariable String color) {
         return facultyService.allFaculties().stream()
                 .filter(faculty -> faculty.getColor() == color)
