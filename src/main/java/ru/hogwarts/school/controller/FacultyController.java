@@ -45,5 +45,11 @@ public class FacultyController {
                 .filter(faculty -> faculty.getColor() == color)
                 .collect(Collectors.toList());
     }
+    @GetMapping("findbyNameOrColor/{name}&{color}")
+
+    public Collection<Faculty> findAllFacultiesByNameOrColor(@PathVariable @RequestParam(required = false) String name,
+                                                             @PathVariable @RequestParam(required = false) String color) {
+        return facultyService.findAllFacultiesByNameOrColor(name, color);
+    }
 
 }

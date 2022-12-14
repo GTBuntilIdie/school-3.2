@@ -5,9 +5,11 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Collection;
 import java.util.Objects;
 
-@Data
+
 @Entity
 public class Faculty {
     @Id
@@ -15,6 +17,9 @@ public class Faculty {
     private Long id;
     private String name;
     private String color;
+
+    @OneToMany(mappedBy = "student")
+    private Collection<Student> students;
 
     public Faculty(String name, String color) {
         this.name = name;

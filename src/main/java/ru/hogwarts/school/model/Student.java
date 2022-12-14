@@ -2,11 +2,9 @@ package ru.hogwarts.school.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
-@Data
+
 @Entity
 public class Student {
     @Id
@@ -14,6 +12,9 @@ public class Student {
     private Long id;
     private String name;
     private int age;
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
 
     public Student(String name, int age) {
         this.name = name;
@@ -21,7 +22,6 @@ public class Student {
     }
 
     public Student() {
-
     }
 
     public Long getId() {
