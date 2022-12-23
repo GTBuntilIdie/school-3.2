@@ -16,45 +16,40 @@ public class FacultyController {
     public FacultyController(FacultyService facultyService) {
         this.facultyService = facultyService;
     }
-    @PostMapping("create")
-    public Faculty createFaculty(@RequestBody Faculty faculty) {
+
+    @PostMapping
+    public Faculty createStudent(@RequestBody Faculty faculty) {
         return facultyService.createFaculty(faculty);
     }
-    @PutMapping("edit")
-    public ResponseEntity<Faculty> editFaculty(@RequestBody Faculty faculty) {
-        Faculty editFaculty = facultyService.editFaculty(faculty);
-        if (editFaculty == null) {
-            ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(editFaculty);
+    @PutMapping
+    public Faculty update(@PathVariable long id,
+                          @RequestBody Faculty faculty) {
+        return facultyService.update(id, faculty);
     }
     @GetMapping("{id}")
-    public ResponseEntity<Faculty> findFaculty(@PathVariable long id) {
-        Faculty findFaculty = facultyService.findFaculty(id);
-        if (findFaculty == null) {
+    public ResponseEntity<Faculty> read(@PathVariable long id) {
+        Faculty faculty = facultyService.read(id);
+        if (faculty == null) {
             ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(findFaculty);
+        return ResponseEntity.ok(faculty);
     }
     @DeleteMapping("{id}")
-    public void deleteFaculty(@PathVariable long id) {
+    public void deleteFaculty(@PathVariable Long id) {
         facultyService.deleteFaculty(id);
     }
-    @GetMapping("sorted/{color}")
-    public Collection<Faculty> facultyStudentsByColor(@PathVariable String color) {
-        return facultyService.allFaculties().stream()
-                .filter(faculty -> faculty.getColor() == color)
-                .collect(Collectors.toList());
+    @GetMapping("{color}")
+    public Collection<Faculty> facultiesByColor(@PathVariable String color) {
+        return facultyService.findByColor(color);
     }
-
-    @GetMapping("/findBy")
+    @GetMapping
     public Collection<Faculty> findBy(@RequestParam String colorOrName) {
         return facultyService.findAllFacultiesByNameOrColor(colorOrName);
     }
-
-    @GetMapping("getAllFacultyStudents")
-    public Collection<Student> getAllFacultyStudents(@PathVariable Faculty faculty) {
-        return facultyService.getAllFacultyStudents(faculty);
-
+    @GetMapping("/{id}/students")
+    public Collection<Student> getStudentsByFaculty(@PathVariable long id) {
+        return facultyService.getStudentsByFaculty(id);
     }
+
+
 }

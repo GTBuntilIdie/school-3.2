@@ -12,7 +12,6 @@ public class Student {
     private Long id;
     private String name;
     private int age;
-
     @ManyToOne
     private Faculty faculty;
 
