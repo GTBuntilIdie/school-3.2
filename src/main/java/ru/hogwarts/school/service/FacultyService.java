@@ -28,6 +28,7 @@ public class FacultyService {
         return facultyRepository.findById(id).orElseThrow(() -> new NotFoundException("id not found"));
 
     }
+
     public Faculty update(long id, Faculty faculty) {
         Faculty oldFaculty = read(id);
         oldFaculty.setName(faculty.getName());

@@ -1,5 +1,6 @@
 package ru.hogwarts.school.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Faculty;
@@ -26,7 +27,7 @@ public class FacultyController {
                           @RequestBody Faculty faculty) {
         return facultyService.update(id, faculty);
     }
-    @GetMapping("{id}")
+    @GetMapping("find/{id}")
     public ResponseEntity<Faculty> findFaculty(@PathVariable long id) {
         Faculty faculty = facultyService.read(id);
         if (faculty == null) {
@@ -34,6 +35,7 @@ public class FacultyController {
         }
         return ResponseEntity.ok(faculty);
     }
+
     @DeleteMapping("{id}")
     public void deleteFaculty(@PathVariable Long id) {
         facultyService.deleteFaculty(id);
