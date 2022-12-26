@@ -1,6 +1,8 @@
 package ru.hogwarts.school.model;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -12,7 +14,8 @@ public class Student {
     private Long id;
     private String name;
     private int age;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Faculty faculty;
 
     public Student() {

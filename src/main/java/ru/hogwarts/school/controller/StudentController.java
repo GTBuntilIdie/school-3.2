@@ -31,7 +31,7 @@ public class StudentController {
     public ResponseEntity<Student> findStudent(@PathVariable long id) {
         Student findStudent = service.read(id);
         if (findStudent == null) {
-            ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(findStudent);
     }
