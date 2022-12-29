@@ -15,7 +15,6 @@ public class Student {
     private String name;
     private int age;
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Faculty faculty;
 
     public Student() {
