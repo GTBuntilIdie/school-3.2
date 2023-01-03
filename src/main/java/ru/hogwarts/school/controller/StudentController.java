@@ -41,7 +41,7 @@ public class StudentController {
     public Collection<Student> studentsTheSameAge(@RequestParam int age) {
         return service.findByAge(age);
     }
-    @GetMapping(params = {"min, max"})
+    @GetMapping(params = {"min, max"}) // GET http://localhost:8080/student?min=15&max=18
     public Collection<Student> allStudentsByAgeBetween(@RequestParam int min,
                                                        @RequestParam int max) {
         return service.allStudentsByAgeBetween(min, max);
