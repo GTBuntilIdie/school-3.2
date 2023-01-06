@@ -4,9 +4,11 @@ import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.model.StudentList;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class StudentService {
@@ -45,6 +47,15 @@ public class StudentService {
     }
     public Faculty getStudentFaculty(long id) {
         return read(id).getFaculty();
+    }
+    public Integer getQualityOfStudents() {
+        return studentRepository.getTheNumberOfStudents();
+    }
+    public Double getAverageAge() {
+        return studentRepository.getAverageAge();
+    }
+    public List<Student> getLastStudents() {
+        return studentRepository.lastStudents();
     }
 
 

@@ -4,8 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.model.StudentList;
 import ru.hogwarts.school.service.StudentService;
 import java.util.Collection;
+import java.util.List;
 
 
 @RestController
@@ -49,5 +51,18 @@ public class StudentController {
     @GetMapping("/{id}/Faculty")
     public Faculty getStudentFaculty(@PathVariable long id) {
         return service.getStudentFaculty(id);
+    }
+    @GetMapping("/quantity-of-students")
+    public ResponseEntity<Integer> getQualityOfStudents() {
+        return ResponseEntity.ok(service.getQualityOfStudents());
+
+    }
+    @GetMapping("/average-age-of-students")
+    public ResponseEntity<Double> getAverageAge() {
+        return ResponseEntity.ok(service.getAverageAge());
+    }
+    @GetMapping("/the-last-five-students")
+    public ResponseEntity<List<Student>> grtLastStudents() {
+        return ResponseEntity.ok(service.getLastStudents());
     }
 }
